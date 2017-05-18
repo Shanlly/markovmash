@@ -1,0 +1,50 @@
+/*CSS styling for markvomash*/
+/*font-family: 'Architects Daughter', cursive; haiku
+font-family: 'Slackey', cursive; title
+font-family: 'Coming Soon', cursive;  everything else*/
+
+body {
+	background-color: #2aa9af;
+	color:#073d3f;
+	font-size: 20px;
+	font-family: 'Coming Soon', cursive;
+}
+
+h1 {
+	font-family: 'Slackey', cursive;
+	font-size: 45px;
+	text-align: center;
+
+}
+
+p {
+	display: inline-block;
+	margin-top:20px;
+}
+/* pulled from 
+http://stackoverflow.com/questions/6464592/how-to-align-entire-html-body-to-the-center*/
+.centered-wrapper {
+    position: relative;
+    text-align: center;
+}
+.centered-wrapper:before {
+    content: "";
+    position: relative;
+    display: inline-block;
+    width: 0; height: 100%;
+    vertical-align: middle;
+}
+.centered-content {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+img {
+	float: left;
+}
+
+textarea {
+	border-radius: 20%;
+	padding: 20px;
+}
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>MarkvoMash</title>
+<!-- added bootstrap, a style.css and jquery styling and links -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+			<link rel="stylesheet" type="text/css" href="style.css">
+			<link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Coming+Soon|Slackey" rel="stylesheet">
+			<script
+				src="https://code.jquery.com/jquery-3.2.1.min.js"
+				integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+				crossorigin="anonymous">
+			</script>
+	</head>
+<body class="centered-wrapper">
+	<div class="container centered-content">
+		<span><img src="https://www.decodedscience.org/wp-content/uploads/2013/03/A03b_2_State_Markov_Chain.jpg" width="125px" height="140px" alt="markvo chain pic"></span>
+		<header id="tile">
+			<h1>A "Markvo" Twitter Mash</h1>
+		</header>
+	</div>
+	<div>
+		<p> Enter a Twitter user name and get a mashed up twitter version you can use or a haiku made from the twitter feed!</p>
+	</div>
+	<div class="centered-content">
+<!--input of user names, whether you want a tweet or haiku and result-->
+			<div class="form-group">
+				<input class="tweet" type="text" name="username" placeholder="User Name">
+				<button id="markvo" type="submit">Markvo Tweet</button>
+				<button id="haiku" type="submit">Haiku</button>
+			</div>
+		<textarea class="tweet_haiku" name="tweet_haiku" rows="5" cols="50"></textarea>
+	</div>
+	<hr>
+<!--this is for the mash up of 2 users-->
+	<div class="centered-content">
+	<!--form to hold the input of usernames, whether you want a tweet or haiku and result-->
+			<div class="form-group">
+				<input id="mashup" type="text" name="user" placeholder="User Name" value="katyperry">
+				<input class="mashup" type="text" name="user2" placeholder=" Second User Name" value="coldplay">
+				<button id="mashes" type="submit">Markvo Tweet</button>
+			</div>
+		<textarea class="mash" name="tweet" rows="5" cols="50"></textarea>
+	</div>
+	<script>
+	$(document).ready(function(){ 
+// for markvo tweet get call
+		$("#markvo").on("click", function(res){
+			$.get("/api/tweet",
+				{ 
+					user: $(".tweet").val()
+				}, 
+				function(res){
+					$(".tweet_haiku").text(res);
+			});
+		});
+// for the haiku tweet call 
+		$("#haiku").on("click", function(res){
+			$.get("/api/haiku",
+				{
+					user: $(".tweet").val()
+				}, 
+				function(res){
+					$(".tweet").css("font-family", 'Architects Daughter', "cursive");
+					$(".tweet_haiku").text(res);
+				}
+			);
+		});
+// for the two twitter mash
+		$("#mashes").on("click", function(res){
+			$.get('/api/tweets/mash', 
+				{
+					user: $("#mashup").val(), 
+					user2: $(".mashup").val()
+				},
+				function(res){
+					$(".mash").text(res);
+				}
+			);
+		});
+	});
+	</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
